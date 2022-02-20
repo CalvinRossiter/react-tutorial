@@ -122,6 +122,14 @@ class Game extends React.Component {
       );
     });
 
+    // calculates the location of the move to display next to the move list
+    const moveLocations = history.map((step, move) => {
+      const desc = move ? 'Go to move #' + move : 'Go to game start';
+      return (
+        <div>{desc}</div>
+      );
+    });
+
     // Calculates the status of the game to display (whose turn, is there a winner, or a draw
     let status;
     if (winner) {
@@ -144,6 +152,10 @@ class Game extends React.Component {
         <div className="game-info">
           <div>{status}</div>
           <ol>{moves}</ol>
+        </div>
+        <div className="move-location">
+          <div>Location</div>
+          <ol>{moveLocations}</ol>
         </div>
       </div>
     );
@@ -192,4 +204,11 @@ function calculateMoves(stepNumber){
     return true;
   }
   return false;
+}
+
+// function used to calculate the location of each move to display
+function calculateLocation(squares){
+  // figure out the row/col of the square that was clicked
+  // maybe get the previous squares and compare it to the current squares, whichever spot is different
+  //    is the spot that was changed
 }
